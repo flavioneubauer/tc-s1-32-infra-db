@@ -2,8 +2,8 @@ resource "aws_db_subnet_group" "rds" {
   name       = "main"
 
   subnet_ids = [
-    subnet-0c5c79843da5f2f23,
-    subnet-002e99eab31d76b50
+    subnet-04126a9992f86bb7e,
+    subnet-06aa4ee0821394c3b
   ]
 
   tags = {
