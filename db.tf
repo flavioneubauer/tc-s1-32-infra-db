@@ -13,14 +13,3 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name   = tc-s1-32-vpc-vpc
   vpc_security_group_ids = ["aXCiBL0DJUoZ2g.atlasv1.24cureWrIxwkr8T72lG0q6liCeJA6QKflCVpBEvyHysyRNPVrnX7BB7LRVdWyyUBlHsvpc-0cd75faecbced4a6a"]
 }
-
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 5.0"
-
-  name = tc-s1-32-vpc-vpc
-
-  create_database_subnet_group = true
-
-  tags = local.tags
-}
