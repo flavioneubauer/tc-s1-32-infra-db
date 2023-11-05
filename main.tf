@@ -22,7 +22,7 @@ resource "aws_db_instance" "default" {
   username             = "postgres"
   password             = "postgres"
   parameter_group_name = "default.postgres15"
-  vpc_security_group_ids=[sg-0d74b8d63016e6404] 
+  vpc_security_group_ids=["sg-0d74b8d63016e6404"] 
   db_subnet_group_name = aws_db_subnet_group.rds.name
   skip_final_snapshot  = true
 }
