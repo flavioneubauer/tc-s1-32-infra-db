@@ -13,8 +13,7 @@ resource "aws_db_instance" "default" {
 }
 
 resource "aws_vpc" "vpc" {
-  cidr_block       = "vpc-0cd75faecbced4a6a"
-
+  cidr_block       = vpc-0cd75faecbced4a6a
 
   tags = {
     Name = "tc-s1-32-vpc-vpc"
