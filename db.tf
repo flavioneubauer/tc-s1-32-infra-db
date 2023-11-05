@@ -12,7 +12,17 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot  = true
 }
 
-import {
-  to = aws_vpc.test_vpc
-  id = "vpc-0cd75faecbced4a6a"
+resource "aws_db_subnet_group" "rds" {
+  name       = "main"
+
+  subnet_ids = [
+    subnet-0c5c79843da5f2f23,
+    subnet-002e99eab31d76b50
+  ]
+
+  tags = {
+    Name = "tc-s1-32-subnet-group"
+  }
 }
+
+db_subnet_group_name = aws_db_subnet_group.rds.name
