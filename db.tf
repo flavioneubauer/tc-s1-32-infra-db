@@ -1,4 +1,5 @@
 resource "aws_db_instance" "default" {
+  identifier           = "tc"
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "postgres"
