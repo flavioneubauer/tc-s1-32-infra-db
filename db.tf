@@ -12,9 +12,9 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot  = true
 }
 
-resource "aws_db_subnet_group" "default" {
-  name       = "main"
-  subnet_ids = ["aXCiBL0DJUoZ2g.atlasv1.24cureWrIxwkr8T72lG0q6liCeJA6QKflCVpBEvyHysyRNPVrnX7BB7LRVdWyyUBlHsvpc-0cd75faecbced4a6a"]
+resource "aws_vpc" "vpc" {
+  cidr_block       = "aXCiBL0DJUoZ2g.atlasv1.24cureWrIxwkr8T72lG0q6liCeJA6QKflCVpBEvyHysyRNPVrnX7BB7LRVdWyyUBlHsvpc-0cd75faecbced4a6a"
+
 
   tags = {
     Name = "tc-s1-32-vpc-vpc"
