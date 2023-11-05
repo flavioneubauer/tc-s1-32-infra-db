@@ -1,0 +1,21 @@
+
+on:
+    push:
+        branches: 
+            - master
+jobs:
+  deploy:
+    name: Terraform RDS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Terraform Apply for AWS
+        uses: kciter/terraform-apply-for-aws-action@v3
+        with:
+          access_key_id:  ${{ secrets.AWS_KEY_ID }}
+          secret_access_key: ${{ secrets.AWS_KEY_SECRET }} 
+          region: ${{ secrets.AWS_REGION }}
+   
