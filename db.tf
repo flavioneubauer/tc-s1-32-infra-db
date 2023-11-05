@@ -1,16 +1,3 @@
-resource "aws_db_subnet_group" "rds" {
-  name       = "main"
-
-  subnet_ids = [
-    subnet-04126a9992f86bb7e,
-    subnet-06aa4ee0821394c3b
-  ]
-
-  tags = {
-    Name = "tc-s1-32-subnet-group"
-  }
-}
-
 resource "aws_db_instance" "default" {
   identifier           = "tc"
   allocated_storage    = 20
@@ -23,5 +10,5 @@ resource "aws_db_instance" "default" {
   password             = "postgres"
   parameter_group_name = "default.postgres15"
   skip_final_snapshot  = true
-  db_subnet_group_name = aws_db_subnet_group.rds.name
+  pc_security_group_ids=[sg-0d74b8d63016e6404]
 }
