@@ -12,7 +12,7 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot  = true
 }
 
-resource "aws_vpc" "vpc" {
-  vpc_id = "vpc-0cd75faecbced4a6a"
-    cidr_block = "10.0.0.0/16"
+import {
+  to = aws_vpc.test_vpc
+  id = "vpc-0cd75faecbced4a6a"
 }
