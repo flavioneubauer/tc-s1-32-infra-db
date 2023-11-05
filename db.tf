@@ -7,6 +7,6 @@ resource "aws_db_instance" "default" {
   name                 = "tc"
   username             = "postgres"
   password             = "postgres"
-  parameter_group_name = "default.postgres12"
+  parameter_group_name = "default.postgres15"
   skip_final_snapshot  = true
 }
