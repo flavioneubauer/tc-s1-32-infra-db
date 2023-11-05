@@ -11,3 +11,12 @@ resource "aws_db_instance" "default" {
   parameter_group_name = "default.postgres15"
   skip_final_snapshot  = true
 }
+
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "tc-s1-32-vpc-vpc"
+
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
+}
