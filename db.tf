@@ -14,6 +14,7 @@ resource "aws_db_instance" "default" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
+  version = "2.77.0"
 
   name = "tc-s1-32-vpc-vpc"
 
