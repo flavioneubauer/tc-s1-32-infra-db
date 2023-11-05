@@ -13,11 +13,12 @@ resource "aws_db_instance" "default" {
 }
 
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-  version = "2.77.0"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 5.0"
 
-  name = "tc-s1-32-vpc-vpc"
+  name = tc-s1-32-vpc-vpc
 
-  enable_nat_gateway = true
-  enable_vpn_gateway = true
+  create_database_subnet_group = true
+
+  tags = local.tags
 }
