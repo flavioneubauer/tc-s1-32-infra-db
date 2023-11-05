@@ -17,10 +17,6 @@ jobs:
           # terraform_version: 1.4.2
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-
       - name: Terraform Init
         id: init
         run: terraform init
@@ -30,5 +26,5 @@ jobs:
         run: terraform validate -no-color
     
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/flavio' && github.event_name == 'push'
+        if: github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
