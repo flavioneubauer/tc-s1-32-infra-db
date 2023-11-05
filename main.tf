@@ -29,7 +29,7 @@ resource "aws_db_subnet_group" "rds" {
   }
 }
 
-resource "aws_db_instance" "tc" {
+resource "aws_db_instance" "tc-1" {
   identifier           = "tc"
   allocated_storage    = 20
   storage_type         = "gp2"
