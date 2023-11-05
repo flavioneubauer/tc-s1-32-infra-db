@@ -1,3 +1,16 @@
+resource "aws_db_subnet_group" "rds" {
+  name       = "main"
+
+  subnet_ids = [
+    subnet-0c5c79843da5f2f23,
+    subnet-002e99eab31d76b50
+  ]
+
+  tags = {
+    Name = "tc-s1-32-subnet-group"
+  }
+}
+
 resource "aws_db_instance" "default" {
   identifier           = "tc"
   allocated_storage    = 20
@@ -9,10 +22,7 @@ resource "aws_db_instance" "default" {
   username             = "postgres"
   password             = "postgres"
   parameter_group_name = "default.postgres15"
+  vpc_security_group_ids=[sg-0d74b8d63016e6404] 
+  db_subnet_group_name = aws_db_subnet_group.rds.name
   skip_final_snapshot  = true
-}
-
-import {
-  to = aws_vpc.test_vpc
-  id = "vpc-0cd75faecbced4a6a"
 }

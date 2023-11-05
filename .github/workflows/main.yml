@@ -1,8 +1,7 @@
-
 on:
     push:
         branches: 
-            - main
+            - flavio
 jobs:
   deploy:
     name: Terraform RDS
@@ -12,10 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Terraform Apply for AWS
-        uses: kciter/terraform-apply-for-aws-action@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
         with:
-          access_key_id:  ${{ secrets.AWS_KEY_ID }}
-          secret_access_key: ${{ secrets.AWS_KEY_SECRET }} 
-          region: us-east-1
-   
+          # terraform_version: 1.4.2
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/flavio' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false
