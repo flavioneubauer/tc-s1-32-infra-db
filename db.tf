@@ -13,14 +13,6 @@ resource "aws_db_instance" "default" {
 }
 
 resource "aws_vpc" "vpc" {
-  cidr_block       = "10.0.0.0/16"
-
-  tags = {
-    Name = "tc-s1-32-vpc-vpc"
-  }
-}
-
-resource "aws_subnet" "pre_exist_vpc" {
-    vpc_id = "vpc-0cd75faecbced4a6a"
+  vpc_id = "vpc-0cd75faecbced4a6a"
     cidr_block = "10.0.0.0/16"
 }
