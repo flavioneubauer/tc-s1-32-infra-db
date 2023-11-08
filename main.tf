@@ -16,8 +16,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_db_subnet_group" "rds" {
-  name       = "main"
+resource "aws_db_subnet_group" "rds-secrets" {
+  name       = "main-secrets"
 
   subnet_ids = [
     "subnet-019b999ed06f1d9bc",
@@ -29,15 +29,24 @@ resource "aws_db_subnet_group" "rds" {
   }
 }
 
-resource "aws_db_instance" "tc" {
-  identifier           = "tc"
+data "aws_secretsmanager_secret" "secrets" {
+  arn = "arn:aws:secretsmanager:us-east-1:741543006217:secret:rds-secret-rq2LdF"
+}
+
+data "aws_secretsmanager_secret_version" "current" {
+  secret_id = data.aws_secretsmanager_secret.secrets.id
+}
+
+
+resource "aws_db_instance" "tc-secrets" {
+  identifier           = "tc-secrets"
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "postgres"
   engine_version       = "15"
   instance_class       = "db.t3.micro"
-  username             = "postgres"
-  password             = "postgres"
+  username             = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)["username"]
+  password             = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)["password"]
   parameter_group_name = "default.postgres15"
   vpc_security_group_ids=["sg-011580c646528e145"] 
   db_subnet_group_name = aws_db_subnet_group.rds.name
