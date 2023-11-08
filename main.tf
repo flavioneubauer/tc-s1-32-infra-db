@@ -49,6 +49,6 @@ resource "aws_db_instance" "tc-secrets" {
   password             = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)["password"]
   parameter_group_name = "default.postgres15"
   vpc_security_group_ids=["sg-011580c646528e145"] 
-  db_subnet_group_name = aws_db_subnet_group.rds.name
+  db_subnet_group_name = aws_db_subnet_group.rds-secrets.name
   skip_final_snapshot  = true
 }
